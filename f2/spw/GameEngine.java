@@ -14,7 +14,8 @@ import javax.swing.Timer;
 public class GameEngine implements KeyListener, GameReporter{
 	GamePanel gp;
 		
-	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();	
+	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+	private ArrayList<Enemyadvance> enemieadvances = new ArrayList<Enemyadvance>();
 	private SpaceShip v;	
 	
 	private Timer timer;
@@ -49,9 +50,17 @@ public class GameEngine implements KeyListener, GameReporter{
 		enemies.add(e);
 	}
 	
+	private void generateEnemyadvance(){
+		Enemyadvance ea = new Enemyadvance((int)(Math.random()*190), 30);
+		gp.sprites.add(ea);
+		enemies.add(ea);
+	}
+	
+	
 	private void process(){
 		if(Math.random() < difficulty){
 			generateEnemy();
+			generateEnemyadvance();
 		}
 		
 		Iterator<Enemy> e_iter = enemies.iterator();
@@ -63,6 +72,18 @@ public class GameEngine implements KeyListener, GameReporter{
 				e_iter.remove();
 				gp.sprites.remove(e);
 				score += 100;
+			}
+		}
+		
+		Iterator<Enemyadvance> e_iter = enemieadvancess.iterator();
+		while(e_iter.hasNext()){
+			Enemyadvance ea = e_iter.next();
+			ea.proceed();
+			
+			if(!ea.isAlive()){
+				e_iter.remove();
+				gp.sprites.remove(ea);
+				score += 150;
 			}
 		}
 		
