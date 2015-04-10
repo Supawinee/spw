@@ -51,9 +51,9 @@ public class GameEngine implements KeyListener, GameReporter{
 	}
 	
 	private void generateEnemyadvance(){
-		Enemyadvance ea = new Enemyadvance((int)(Math.random()*190), 30);
+		Enemyadvance ea = new Enemyadvance((int)(Math.random()*390), 25);
 		gp.sprites.add(ea);
-		enemies.add(ea);
+		enemieadvances.add(ea);
 	}
 	
 	
@@ -75,13 +75,13 @@ public class GameEngine implements KeyListener, GameReporter{
 			}
 		}
 		
-		Iterator<Enemyadvance> e_iter = enemieadvancess.iterator();
-		while(e_iter.hasNext()){
-			Enemyadvance ea = e_iter.next();
+		Iterator<Enemyadvance> ea_iter = enemieadvances.iterator();
+		while(ea_iter.hasNext()){
+			Enemyadvance ea = ea_iter.next();
 			ea.proceed();
 			
 			if(!ea.isAlive()){
-				e_iter.remove();
+				ea_iter.remove();
 				gp.sprites.remove(ea);
 				score += 150;
 			}
@@ -112,10 +112,10 @@ public class GameEngine implements KeyListener, GameReporter{
 		case KeyEvent.VK_RIGHT:
 			v.move(1,0);
 			break;
-		case KeyEvent.VK_DOWN:
+		case KeyEvent.VK_UP:
 			v.move(0,-1);
 			break;
-		case KeyEvent.VK_UP:
+		case KeyEvent.VK_DOWN:
 			v.move(0,1);
 			break;
 		case KeyEvent.VK_D:
