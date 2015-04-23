@@ -16,6 +16,7 @@ public class GameEngine implements KeyListener, GameReporter{
 		
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private ArrayList<Enemyadvance> enemieadvances = new ArrayList<Enemyadvance>();
+	private ArrayList<Bullet> bullets = new ArrayList<bullet>();
 	private SpaceShip v;	
 	
 	private Timer timer;
@@ -54,6 +55,12 @@ public class GameEngine implements KeyListener, GameReporter{
 		Enemyadvance ea = new Enemyadvance((int)(Math.random()*390), 25);
 		gp.sprites.add(ea);
 		enemieadvances.add(ea);
+	}
+	
+	private void generateBullet(){
+		Enemyadvance b = new Bullet(v.x,);
+		gp.sprites.add(b);
+		enemieadvances.add(b);
 	}
 	
 	
