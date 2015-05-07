@@ -18,12 +18,12 @@ public class Bullet extends Sprite{
 
 	@Override
 	public void draw(Graphics2D g) {
-		if(y < Y_TO_FADE)
-			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
-		else{
-			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 
-					(float)(Y_TO_DIE - y)/(Y_TO_DIE - Y_TO_FADE)));
-		}
+		// if(y < Y_TO_FADE)
+		// 	g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+		// else{
+		// 	g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 
+		// 			(float)(Y_TO_DIE - y)/(Y_TO_DIE - Y_TO_FADE)));
+		// }
 		g.setColor(Color.GREEN);
 		g.fillRect(x, y, width, height);
 		
@@ -31,7 +31,7 @@ public class Bullet extends Sprite{
 
 	public void proceed(){
 		y -= step;
-		if(y > Y_TO_DIE){
+		if(y < Y_TO_DIE){
 			alive = false;
 		}
 	}
