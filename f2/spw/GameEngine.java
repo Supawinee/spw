@@ -58,7 +58,7 @@ public class GameEngine implements KeyListener, GameReporter{
 	}
 	
 	private void generateBullet(){
-		Bullet b = new Bullet((v.x)+(v.width/2), v.y);
+		Bullet b = new Bullet((v.x)+(v.width/2)-3, v.y);
 		gp.sprites.add(b);
 		bullets.add(b);
 	}
@@ -68,7 +68,11 @@ public class GameEngine implements KeyListener, GameReporter{
 		if(Math.random() < difficulty){
 			generateEnemy();
 			generateEnemyadvance();
+
+			
 		}
+		
+		
 		
 		Iterator<Enemy> e_iter = enemies.iterator();
 		while(e_iter.hasNext()){
@@ -113,27 +117,48 @@ public class GameEngine implements KeyListener, GameReporter{
 		Rectangle2D.Double br;
 		for(Enemy e : enemies){
 			er = e.getRectangle();
-			if(er.intersects(vr)){
-				die();
+			
+			for(Bullet b : bullets){
+				br = b.getRectangle();
+				if(br.intersects(er)){
+					b.lost();
+					e.lost();
+					return;
+				}
+
+			
+			
+
+				if(er.intersects(vr)){
+					die();
 				return;
+				}
 			}
 		}
 		
 		for(Enemyadvance ea : enemieadvances){
 			ear = ea.getRectangle();
-			if(ear.intersects(vr)){
-				die();
+			
+			for(Bullet b : bullets){
+				br = b.getRectangle();
+				if(br.intersects(ear)){
+					b.lost();
+					ea.lost();
+					return;
+				}
+
+			
+			
+
+				if(ear.intersects(vr)){
+					die();
 				return;
+				}
+
 			}
 		}
 		
-		for(Bullet b : bullets){
-			br = b.getRectangle();
-			if(br.intersects(vr)){
-				//die();
-				return;
-			}
-		}
+
 	}
 	
 	public void die(){

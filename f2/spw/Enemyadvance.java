@@ -29,10 +29,16 @@ public class Enemyadvance extends Sprite{
 		
 	}
 
+	
+	public void lost(){
+		alive = false;
+	}
+
 	public void proceed(){
 		y += step;
 		if(y > Y_TO_DIE){
-			alive = false;
+			//alive = false;
+			lost();
 		}
 	}
 	
