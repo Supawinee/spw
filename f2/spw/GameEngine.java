@@ -127,13 +127,13 @@ public class GameEngine implements KeyListener, GameReporter{
 				}
 
 			
-			
-
-				if(er.intersects(vr)){
-					die();
-				return;
-				}
 			}
+
+			if(er.intersects(vr)){
+				die();
+				return;
+			}
+			
 		}
 		
 		for(Enemyadvance ea : enemieadvances){
@@ -148,14 +148,14 @@ public class GameEngine implements KeyListener, GameReporter{
 				}
 
 			
-			
-
-				if(ear.intersects(vr)){
-					die();
-				return;
-				}
-
 			}
+
+			if(ear.intersects(vr)){
+				die();
+				return;
+			}
+
+			
 		}
 		
 
@@ -182,6 +182,12 @@ public class GameEngine implements KeyListener, GameReporter{
 		case KeyEvent.VK_D:
 			difficulty += 0.1;
 			break;
+		case KeyEvent.VK_P:
+		 	die();
+		 	break;
+		 case KeyEvent.VK_S:
+		 	timer.start();
+		 	break;
 		case KeyEvent.VK_SPACE:
 			generateBullet();
 			break;	
